@@ -1,0 +1,40 @@
+@model  Employee
+
+@{
+    ViewBag.Title = Model == null ? "Create" : "Update";
+}
+
+<h2>@ViewBag.Title an Employee</h2>
+
+<form asp-action="@ViewBag.Title">
+
+    <div asp-validation-summary=All></div>
+
+    <input asp-for="EmployeeID" class="form-control" hidden readonly>
+
+    <label asp-for="EmployeeName" class="control-label"></label>
+    <input asp-for="EmployeeName" class="form-control">
+
+    <label asp-for="DOB" class="control-label"></label>
+    <input asp-for="DOB" class="form-control">
+
+    <label asp-for="HiringDate" class="control-label"></label>
+    <input asp-for="HiringDate" class="form-control">
+
+    <label asp-for="Salary" class="control-label"></label>
+    <input asp-for="Salary" class="form-control">
+
+    <label asp-for="DepartmentID" class="control-label"></label>
+    <select asp-for="DepartmentID" asp-items="@(new SelectList(ViewBag.Departments, "DepartmentID", "DepartmentName"))" class="form-control">
+        <option value="">Select Department</option>
+    </select>
+
+    <label asp-for="Country" class="control-label"></label>
+    <input asp-for="Country" class="form-control">
+
+    <br>
+
+    <input type="submit" value="Save" class="btn btn-primary">
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+
+</form>

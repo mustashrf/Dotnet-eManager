@@ -1,0 +1,18 @@
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div style="text-align: center; margin-top: 100px;">
+
+    <h1>Welcome to the eManager System</h1>
+
+    <p style="white-space: pre-line;">
+        This is a demonstration of simple CRUD operations on employees and departments,
+        feel free to explore the features and manage your employee and department data.
+    </p>
+
+    <div style="margin-top: 20px;">
+        <a href="@Url.Action("Index", "Department")" class="btn btn-success">Manage Departments</a>
+        <a href="@Url.Action("Index", "Employee")" class="btn btn-primary">Manage Employees</a>
+    </div>
+</div>

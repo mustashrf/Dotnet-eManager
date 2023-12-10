@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Employees";
+}
+
+<style>
+    .link-no-underline {
+        text-decoration: none;
+        color: black;
+        cursor: pointer;
+    }
+</style>
+
+@using(Html.BeginForm())
+{
+    <div class="input-group">
+        @Html.TextBox("SearchByName", null, new{ @class="form-control", @placeholder="Search By Name..." })
+        <input type="submit" value="Search" class="btn btn-outline-secondary">
+        <a asp-action="Create" class="btn btn-outline-primary">Add</a>
+    </div>
+}
+
+<div class="text-center">
+    <h1 class="display-4">All Employees</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.ActionLink("Employee Name", "Index", new{ SortField = "EmployeeName", CurrentSortField = ViewBag.SortField, SortDirection = ViewBag.SortDirection}, new { @class = "link-no-underline" })
+                </th>
+                <th>
+                    @Html.ActionLink("Date Of Birth", "Index", new{ SortField = "DOB", CurrentSortField = ViewBag.SortField, SortDirection = ViewBag.SortDirection}, new { @class = "link-no-underline" })
+                </th>
+                <th>
+                    @Html.ActionLink("Hiring Date", "Index", new{ SortField = "HiringDate", CurrentSortField = ViewBag.SortField, SortDirection = ViewBag.SortDirection}, new { @class = "link-no-underline" })
+                </th>
+                <th>
+                    @Html.ActionLink("Salary", "Index", new{ SortField = "Salary", CurrentSortField = ViewBag.SortField, SortDirection = ViewBag.SortDirection}, new { @class = "link-no-underline" })
+                </th>
+                <th>
+                    @Html.ActionLink("Department", "Index", new{ SortField = "DepartmentName", CurrentSortField = ViewBag.SortField, SortDirection = ViewBag.SortDirection}, new { @class = "link-no-underline" })
+                </th>
+                <th>
+                    @Html.ActionLink("Country", "Index", new{ SortField = "Country", CurrentSortField = ViewBag.SortField, SortDirection = ViewBag.SortDirection}, new { @class = "link-no-underline" })
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var employee in Model)
+            {
+                <tr>
+                    <td>@employee.EmployeeName</td>
+                    <td>@employee.DOB</td>
+                    <td>@employee.HiringDate</td>
+                    <td>@employee.Salary</td>
+                    <td>@employee.DepartmentName</td>
+                    <td>@employee.Country</td>
+                    <td>
+                        <a asp-action="Update" asp-route-id="@employee.EmployeeID" class="btn btn-primary">Update</a>
+                        <a asp-action="Delete" asp-route-id="@employee.EmployeeID" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this employee?')">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
